@@ -24,7 +24,7 @@ end
 
 def play(songs)
   puts "Please enter a song name or number:"
-  user_input = gets.chomp       #The first method I made is commented out at the bottom of this page, and works. I'm just experimenting here. I wanted to code 'if the song name matches, or the index is valid, puts song_name', but couldnt figure out how have one 'puts' statement be able to handle a potential song_name string and also an index value.
+  user_input = gets.chomp       #The first method I made is commented out at the bottom of this page, and works. I'm just experimenting here. I wanted to code 'if the song name matches, or the index is valid, puts songs[song_name] || songs[index_value]', but couldnt figure out how have one 'puts' statement be able to handle a potential song_name string and also an index value.
   user_input_song_index = nil #probably a way too complicated way of being able to turn the input into an index regardless of if its the song name or position
   if user_input.to_i.between?(1, songs.length) #index must be between 1 and the length of the songs array (0 and length - 1, I know)
     user_input_song_index = user_input.to_i - 1 #turn the position into a proper index
@@ -33,7 +33,7 @@ def play(songs)
   else
     puts "Invalid input, please try again" #any errors, default 'try again' statement.
   end
-    if user_input_song_index != nil #once I have the song as an correct and proper index, simple if statement.
+    if user_input_song_index != nil #once I have the song as a correct and proper index, simple if statement.
       puts "Playing #{songs[user_input_song_index]}"
     end
 end
@@ -51,9 +51,9 @@ def run(songs)
       if user_input == "help"
         help
       elsif user_input == "list"
-        list
+        list(songs)
       elsif user_input == "play"
-        play
+        play(songs)
       elsif user_input == "exit"
         exit_jukebox
         break
